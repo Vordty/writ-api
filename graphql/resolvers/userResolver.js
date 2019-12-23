@@ -1,7 +1,6 @@
-import UserService from "../services/user";
-const { findByPk, findAll } = UserService;
+import { findByPk, findAll } from "../../services/userService";
 
-const resolvers = {
+const userResolver = {
 	Query: {
 		user: (parent, args, context, info) => {
 			return findByPk(args.id);
@@ -18,4 +17,4 @@ const resolvers = {
 	}
 };
 
-export default resolvers;
+export default userResolver;

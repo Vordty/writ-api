@@ -5,11 +5,13 @@ export default gql`
 		id: Int!
 		firstName: String
 		lastName: String
+		email: String
 	}
 
 	input UserInput {
 		firstName: String
 		lastName: String
+		email: String
 	}
 
 	type Query {
