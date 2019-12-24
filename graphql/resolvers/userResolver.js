@@ -1,4 +1,4 @@
-import { findByPk, findAll } from "../../services/userService";
+import { findByPk, findAll, findProjects } from "../../services/userService";
 
 const userResolver = {
 	Query: {
@@ -18,7 +18,7 @@ const userResolver = {
 
 	User: {
 		projects: (parent, args, context, info) => {
-			return "projects returned";
+			return findProjects(parent.id);
 		}
 	}
 };

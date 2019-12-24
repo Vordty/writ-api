@@ -1,5 +1,5 @@
 import db from "../models";
-const { User } = db;
+const { User, Project } = db;
 
 export const findByPk = async id => {
 	try {
@@ -12,6 +12,18 @@ export const findByPk = async id => {
 export const findAll = async () => {
 	try {
 		return await User.findAll();
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const findProjects = async id => {
+	try {
+		return await Project.findAll({
+			where: {
+				userId: id
+			}
+		});
 	} catch (error) {
 		console.log(error);
 	}
