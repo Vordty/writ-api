@@ -21,6 +21,6 @@ export default gql`
 	}
 
 	type Mutation {
-		createUser(userInput: UserInput!): User!
+		createUser(input: UserInput!): User!
 	}
 `;
