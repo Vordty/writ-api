@@ -9,6 +9,16 @@ export const findByPk = async id => {
 	}
 };
 
+export const findByEmail = async email => {
+	try {
+		return await User.findOne({
+			where: { email: email }
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const findAll = async () => {
 	try {
 		return await User.findAll();
@@ -24,6 +34,16 @@ export const findProjects = async id => {
 				userId: id
 			}
 		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const createUser = async signupInput => {
+	const { firstName, lastName, email, password } = signupInput;
+
+	try {
+		return await User.create({ firstName, lastName, email, password });
 	} catch (error) {
 		console.log(error);
 	}
