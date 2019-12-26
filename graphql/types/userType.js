@@ -6,6 +6,7 @@ export default gql`
 		firstName: String
 		lastName: String
 		email: String
+		password: String
 		projects: [Project!]!
 	}
 
@@ -13,6 +14,7 @@ export default gql`
 		firstName: String
 		lastName: String
 		email: String
+		password: String
 	}
 
 	type Query {
