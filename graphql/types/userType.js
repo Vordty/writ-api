@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
 
 export default gql`
+	directive @auth on FIELD_DEFINITION
+
 	type User {
 		id: Int!
 		firstName: String
@@ -19,7 +21,7 @@ export default gql`
 
 	type Query {
 		user(id: Int!): User
-		users: [User]
+		users: [User] @auth
 	}
 
 	type Mutation {
