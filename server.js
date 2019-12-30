@@ -23,7 +23,7 @@ const apolloServer = new ApolloServer({
 	schema,
 
 	context: ({ req, res }) => {
-		const context = {};
+		const context = { req, res };
 
 		try {
 			const token = req.headers.authorization;
