@@ -1,4 +1,4 @@
-import { login, register } from "../../services/authService";
+import { login, signup } from "../../services/authService";
 import { findByEmail, findByPk } from "../../services/userService";
 
 import { LoginStatusEnum, SignupStatusEnum } from "../../helpers/enums/AuthStatusEnum";
@@ -39,12 +39,23 @@ const authResolver = {
 
 			const user = await findByEmail(signupInput.email);
 			if (user) {
-				return SignupStatusEnum.FAILURE;
+				return SignupStatusEnum.FAILURE("Email Taken");
 			}
 
-			const newUser = register(signupInput);
+			const newUser = signup(signupInput);
 
 			return SignupStatusEnum.SUCCESS(newUser);
+		},
+
+		signupTest: async (parent, args, context, info) => {
+			const { signupInput } = args;
+
+			const user = await findByEmail(signupInput.email);
+			if (user) {
+				return SignupStatusEnum.FAILURE("Email Taken");
+			}
+
+			return SignupStatusEnum.SUCCESS(null);
 		}
 	}
 };

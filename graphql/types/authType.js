@@ -14,9 +14,8 @@ export default gql`
 	}
 
 	input SignupInput {
-		firstName: String!
-		lastName: String!
 		email: String!
+		username: String!
 		password: String!
 		rePassword: String!
 	}
@@ -28,5 +27,6 @@ export default gql`
 	type Mutation {
 		login(email: String!, password: String!): LoginStatus!
 		signup(signupInput: SignupInput): SignupStatus!
+		signupTest(signupInput: SignupInput): SignupStatus!
 	}
 `;
