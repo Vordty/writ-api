@@ -1,4 +1,4 @@
-export const LoginStatusEnum = {
+export const LoginStatus = {
 	SUCCESS: token => ({ success: true, message: "Success", token: token }),
 
 	FAILURE: {
@@ -8,7 +8,7 @@ export const LoginStatusEnum = {
 	}
 };
 
-export const SignupStatusEnum = {
+export const SignupStatus = {
 	SUCCESS: user => ({ success: true, message: "Success!", user: user }),
 
 	FAILURE: message => ({
@@ -18,7 +18,7 @@ export const SignupStatusEnum = {
 	})
 };
 
-export const ConfirmationStatusEnum = {
+export const ConfirmationStatus = {
 	SUCCESS: {
 		success: true,
 		message: "Confirmation Success"

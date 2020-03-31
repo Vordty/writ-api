@@ -1,7 +1,7 @@
 import { login, signup } from "../../services/authService";
 import { findByEmail, findByPk } from "../../services/userService";
 
-import { LoginStatusEnum, SignupStatusEnum, ConfirmationStatusEnum } from "../../helpers/enums/AuthStatusEnum";
+import { LoginStatus, SignupStatus, ConfirmationStatus } from "../../helpers/status/AuthStatus";
 
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../../config/keys";
@@ -20,7 +20,7 @@ const authResolver = {
 			const user = await login(email, password);
 
 			if (!user) {
-				return LoginStatusEnum.FAILURE;
+				return LoginStatus.FAILURE;
 			}
 
 			const options = {
@@ -31,7 +31,7 @@ const authResolver = {
 
 			const token = jwt.sign({ id: user.id }, JWT_SECRET, options);
 
-			return LoginStatusEnum.SUCCESS(token);
+			return LoginStatus.SUCCESS(token);
 		},
 
 		signup: async (parent, args, context, info) => {
@@ -39,12 +39,12 @@ const authResolver = {
 
 			const user = await findByEmail(signupInput.email);
 			if (user) {
-				return SignupStatusEnum.FAILURE("Email Taken");
+				return SignupStatus.FAILURE("Email Taken");
 			}
 
 			const newUser = signup(signupInput);
 
-			return SignupStatusEnum.SUCCESS(newUser);
+			return SignupStatus.SUCCESS(newUser);
 		},
 
 		signupTest: async (parent, args, context, info) => {
@@ -52,15 +52,15 @@ const authResolver = {
 
 			const user = await findByEmail(signupInput.email);
 			if (user) {
-				return SignupStatusEnum.FAILURE("Email Taken");
+				return SignupStatus.FAILURE("Email Taken");
 			}
 
-			return SignupStatusEnum.SUCCESS(null);
+			return SignupStatus.SUCCESS(null);
 		},
 
 		sendConfirmationCode: async (parent, args, context, info) => {
 			// for now
-			return ConfirmationStatusEnum.FAILURE;
+			return ConfirmationStatus.FAILURE;
 		}
 	}
 };
