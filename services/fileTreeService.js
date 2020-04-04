@@ -1,6 +1,7 @@
 import db from "../models";
-import { FileTreeUpdateStatus } from "../helpers/status/FileTreeStatus";
 const { FileTree } = db;
+import { FileTreeUpdateStatus } from "../helpers/status/FileTreeStatus";
+import { validateFileTree } from "../helpers/validators/FileTreeValidator";
 
 export const findByProjectId = async id => {
 	console.log("FIND FILE TREE BY PROJECT ID", id);
@@ -19,6 +20,9 @@ export const findByProjectId = async id => {
 export const updateFileTree = async args => {
 	console.log("UPDATE FILE TREE", args);
 	try {
+		const error = validateFileTree(args.data);
+		if (error) throw error;
+
 		const result = await FileTree.update(
 			{
 				data: args.data,
