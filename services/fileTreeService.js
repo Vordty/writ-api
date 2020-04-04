@@ -8,7 +8,7 @@ export const findByProjectId = async id => {
 		const result = await FileTree.findAll({
 			where: { projectId: id },
 			plain: true,
-			raw: true
+			raw: true,
 		});
 		return result;
 	} catch (error) {
@@ -21,15 +21,15 @@ export const updateFileTree = async args => {
 	try {
 		const result = await FileTree.update(
 			{
-				data: args.data
+				data: args.data,
 			},
-			{ where: { id: args.id } }
+			{ where: { id: args.id } },
 		);
 
 		console.log("RESULT OF UPDATE FILETREE", result);
 		return FileTreeUpdateStatus.SUCCESS(args.data);
 	} catch (error) {
-		return FileTreeUpdateStatus.FAILURE;
 		console.log(error);
+		return FileTreeUpdateStatus.FAILURE;
 	}
 };
