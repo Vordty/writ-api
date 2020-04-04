@@ -14,7 +14,7 @@ export default gql`
 	type FileTreeStatus {
 		success: Boolean!
 		message: String!
-		data: JSON!
+		data: JSON
 	}
 
 	type Query {
